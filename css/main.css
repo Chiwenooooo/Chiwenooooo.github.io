@@ -162,7 +162,8 @@ article{
     position: static;
     transform: translate(0 , -10vh);
     margin: 0 auto;
-    text-align: center;
+    text-align: center;    
+    box-sizing: border-box;
 }
 .room-wrap{
     position: relative;
@@ -426,6 +427,47 @@ article{
     background-image: linear-gradient(45deg,#6d7278 20%,#fff 0,#fff 60%,#6d7278 0,#6d7278 70%,#fff 0);
     background-size: 5px 5px;
     z-index: -1;
+}
+
+/******************************** RWD*/
+@media (max-width:375px){
+    .room-wrap{
+        margin-bottom: 24px;
+    }
+
+    .rm-bn{
+        height: 30vh;
+    }
+    .pic-left{
+        width: 100%;
+    }
+    .pic-right{
+        display: none;
+    }
+
+    .roomcnt ,
+    .booking{
+        width: 100%;
+        padding: 0 16px;
+    }
+    .intro > p > span{
+        margin: 0;
+        margin-bottom: 1em;
+    }
+    .intro > p > span:last-of-type ,
+    .device{
+        max-width: none;
+    }
+    .intro .spice{
+        top: 80px;
+        text-align: right;
+        border-left: 1px solid gray;
+        padding-left: 1em;
+    }
+    #calendar{
+        padding: 0;
+        margin: 0 auto;
+    }
 }
 
 /******************************** animation*/
