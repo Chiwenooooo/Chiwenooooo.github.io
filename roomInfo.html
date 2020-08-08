@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Space</title>
+
+    <link rel="stylesheet" href="src/calendar/calendar.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="src/calendar/calendar.js"></script>
+    <script src="js/moment.js"></script>
+
+    <script>
+        //單一房型細節
+        var urlId = window.location.href;
+        if (urlId.indexOf('=') != -1) {
+            urlId = urlId.split('=');
+            urlId = urlId[1];
+        }
+        var url = 'https://challenge.thef2e.com/api/thef2e2019/stage6/room/' + urlId;
+
+        //取得單一房型細節
+        getRoomDetail();
+        function getRoomDetail() {
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                headers: {
+                    'Authorization': 'Bearer Ya6ZO3xRANCfbqETW2QswsRNQodXdNnj52lXEN2s4beGD8pZC9w8gopX2SxE'
+                },
+                success: function (data, status) {
+                    //房間資訊
+                    var room = data.room;
+                    var i = 0;
+                    // console.log(room)
+
+                    $('.pic-left').css('background-image', 'url("' + room[i].imageUrl[0] + '")'); //房間圖片
+                    $('.pic-right1').css('background-image', 'url("' + room[i].imageUrl[1] + '")'); //房間圖片
+                    $('.pic-right2').css('background-image', 'url("' + room[i].imageUrl[2] + '")'); //房間圖片
+
+                    $('#roomName').html(room[i].name); //房間名稱
+                    $('#guest').html(room[i].descriptionShort.GuestMin + '~' + room[i].descriptionShort.GuestMax); //房客人數限制
+                    $('#bed').html(room[i].descriptionShort.Bed[i] + ' , ' + room[i].descriptionShort.Bed[i]); //床型
+                    $('#privateBath').html(room[i].descriptionShort['Private-Bath']); //衛浴數量
+                    $('#footage').html(room[i].descriptionShort.Footage); //房間大小                    
+
+                    $('#roomDes').html(room[i].description); //房間詳細描述
+                    $('#checkIn').html(room[i].checkInAndOut.checkInEarly + " - " + room[i].checkInAndOut.checkInLate); //入住時間
+                    $('#checkOut').html(room[i].checkOut); //退房時間
+                    $('#roomSpice').html(room[i].normalDayPrice); //平日價格
+                    $('#holidaySpice').html(room[i].holidayPrice); //假日價格
+
+                    //房間設施
+                    if (room[i].amenities["Air-Conditioner"] == false) {
+                        $('.breeze').addClass('hide')
+                    };
+                    if (room[i].amenities.Breakfast == false) {
+                        $('.breakfast').addClass('hide');
+                    };
+                    if (room[i].amenities["Child-Friendly"] == false) {
+                        $('.crawling-baby-silhouette').addClass('hide');
+                    };
+                    if (room[i].amenities["Great-View"] == false) {
+                        $('.mountain-range').addClass('hide');
+                    };
+                    if (room[i].amenities["Mini-Bar"] == false) {
+                        $('.bar').addClass('hide');
+                    };
+                    if (room[i].amenities["Pet-Friendly"] == false) {
+                        $('.dog').addClass('hide');
+                    };
+                    if (room[i].amenities.Refrigerator == false) {
+                        $('.fridge').addClass('hide');
+                    };
+                    if (room[i].amenities["Room-Service"] == false) {
+                        $('.room_service').addClass('hide');
+                    };
+                    if (room[i].amenities["Smoke-Free"] == false) {
+                        $('.no-smoke-symbol').addClass('hide');
+                    };
+                    if (room[i].amenities.Sofa == false) {
+                        $('.sofa').addClass('hide');
+                    };
+                    if (room[i].amenities.Television == false) {
+                        $('.phone').addClass('hide');
+                    };
+                    if (room[i].amenities["Wi-Fi"] == false) {
+                        $('.wifi').addClass('hide');
+                    }
+
+                    // console.log(room[i].amenities)
+
+                    //訂房資訊
+                    var booking = data.booking;
+                    // console.log(booking)
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('房間資訊網頁出現些許錯誤，請稍後重新連線！')
+                    console.log(xhr.status);
+                    console.log(thrownError);
+                }
+            })
+        }
+
+        //預約房型
+        function bookRoom(dateArray) {
+            var cName = $('#cName').val();
+            var tel = $('#cTel').val();
+
+            var form_data = new FormData();
+            form_data.append("name", cName);
+            form_data.append("tel", tel);
+
+            for (var index = 0; index < dateArray.length; index++) {
+                form_data.append('date[' + index + ']', dateArray[index]);
+            }
+
+            $.ajax({
+                url: url,
+                type: 'post',
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                headers: {
+                    'Authorization': 'Bearer Ya6ZO3xRANCfbqETW2QswsRNQodXdNnj52lXEN2s4beGD8pZC9w8gopX2SxE'
+                },
+                data: form_data,
+
+                success: function (data, status) {
+                    $('.booking-dialog').hide(function () {
+                        $('.dk-bg.success').show();
+                    })
+
+
+                },
+                error: function (data, status) {
+                    $('.booking-dialog').hide(function () {
+                        $('.dk-bg.failure').show();
+                    })
+                }
+            });
+        }
+
+        //清除所有預約
+        function chancelRoom() {
+            $.ajax({
+                url: 'https://challenge.thef2e.com/api/thef2e2019/stage6/rooms',
+                type: 'delete',
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                headers: {
+                    'Authorization': 'Bearer Ya6ZO3xRANCfbqETW2QswsRNQodXdNnj52lXEN2s4beGD8pZC9w8gopX2SxE'
+                },
+
+                success: function (data, status) {
+                    alert('已經取消所有預定')
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.responseJSON.message)
+                    console.log(xhr.status);
+                    console.log(thrownError);
+                }
+            })
+        }
+
+        $(function () {
+            //basic
+            $('div , ul').contents().filter(function () {
+                return this.nodeType === 3;
+            }).remove();
+
+            var dateArray = [];
+            //訂房價錢、日曆初始化  
+            moment().format();
+
+            // var data = [];
+            // data = dateArray;
+
+            // var data = [{
+            //     date: dateArray,
+            //     value: '已預訂'
+            // }, {
+            //     date: year + '-' + month + '-' + date,
+            //     value: '上班'
+
+            // }, {
+            //     date: new Date(year, month - 1, date + 1),
+            //     value: '吃饭睡觉打豆豆'
+
+            // }, {
+            //     date: '2020-08-11',
+            //     value: '已預訂'
+            // }];
+
+            //calendar inline
+            var $ca = $('#calendar').calendar({
+                width: 320,
+                height: 320,
+                //data: data,
+
+                // data: [
+                //     {
+                //         data: '2020-08-13',
+                //         value: 'checked'
+                //     }
+                // ],
+                monthArray: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+            });
+
+            //打開日曆
+            $('#openDialog').click(function () {
+                $('.booking-dialog').parent().show();
+                $('.booking-dialog').show();
+
+
+                var now = new Date();
+                var year = now.getFullYear();
+                var month = now.getMonth() + 1;
+                var date = now.getDate();
+
+                // picker
+                $('#one').calendar({
+                    trigger: '#dt1',
+                    offset: ['-100%', '-100%'],
+                    zIndex: 10,
+                    //data: data,
+                    onSelected: function (view, date, data) {
+                        // 開始日日期
+                        startDate = date;
+
+                    },
+                    onClose: function (view, date, data) {
+                        $('#two').calendar({
+                            trigger: '#dt2',
+                            offset: ['-100%', '-100%'],
+                            zIndex: 10,
+                            //data: data,
+                            onSelected: function (view, date, data) {
+                                // 結束日日期
+                                stopDate = date;
+                                getDates(startDate, stopDate); //列出所有日期、價錢 
+
+                            },
+                            onClose: function (view, date, data) {
+                                // $('#bookingRoom').click(bookRoom(dateArray));確定預約 送出表單
+                                $('#bookingRoom').click(function () {
+                                    bookRoom(dateArray);
+                                })
+
+                            }
+                        });
+                    }
+                });
+
+                //陣列起始日
+                function getDates(startDate, stopDate) {
+                    dateArray = []; //預約日期
+                    var weekArray = []; //預約週期(星期一~星期日)
+                    var currentDate = moment(startDate);
+                    var stopDate = moment(stopDate);
+
+                    while (currentDate < stopDate) {
+                        dateArray.push(moment(currentDate).format('YYYY-MM-DD'));
+                        weekArray.push(moment(currentDate).format('dddd'));
+
+                        currentDate = moment(currentDate).add(1, 'days');
+                    }
+                    // 確認是否為週末
+                    isWeek(weekArray);
+
+                    return dateArray;
+                }
+
+                //檢查是否為假日
+                function isWeek(weekArray) {
+                    //房間價格
+                    var nPrice = parseInt($('#roomSpice').text(), nPrice);
+                    var hPrice = parseInt($('#holidaySpice').text(), hPrice);
+
+                    //房間總金額
+                    var totalPrice = 0;
+
+                    //平日假日天數
+                    var nDay = 0;
+                    var hDay = 0;
+
+                    for (let index = 0; index < weekArray.length; index++) {
+
+                        if (weekArray[index] == "Friday" || weekArray[index] == "Saturday" || weekArray[index] == "Sunday") {
+                            totalPrice += hPrice;
+                            hDay++;
+                        } else if (weekArray[index] == "Monday" || weekArray[index] == "Tuesday" || weekArray[index] == "Wednesday" || weekArray[index] == "Thursday") {
+                            totalPrice += nPrice;
+                            nDay++;
+                        }
+                    }
+
+                    //寫入總金額、平日假日天數
+                    $('#totalPrice').text(totalPrice);
+                    $('#nDay').text(nDay + '夜');
+                    $('#hDay').text(hDay + '夜');
+
+                    return weekArray;
+                }
+            })
+
+            $('.close-dialog').click(function () {
+                $('.dk-bg').hide()
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+    <!-- key vision -->
+    <picture>
+        <div class="rm-bn">
+            <a href="index.html"><img class="logo" src="image/logo-block.svg" alt="White Space"></a>
+            <div class="pic-left"></div>
+            <div class="pic-right">
+                <div class="pic-right1"></div>
+                <div class="pic-right2"></div>
+            </div>
+        </div>
+    </picture>
+
+    <div class="content-wrap">
+        <article class='roomcnt'>
+            <!-- 訂房資訊 -->
+            <div>
+                <section class="intro">
+                    <h1 class="room-name" id='roomName'>Single Room</h1>
+                    <p>
+                        <span>
+                            房客人數限制： <span id="guest">1~1</span> 人<br>
+                            床型：<span id="bed">單人床</span><br>
+                            衛浴數量： <span id="privateBath">1</span> 間<br>
+                            房間大小： <span id="footage">18</span> 平方公尺<br>
+                        </span>
+                        <span id='roomDes'>
+                            Single Room is only reserved for one guest. There is a bedroom with a single size bed and a
+                            private bathroom. Everything you need prepared for you: sheets and blankets, towels, soap
+                            and
+                            shampoo, hairdryer are provided. In the room there is AC and of course WiFi.
+                        </span>
+                        <p class="hr">\\\</p>
+                    </p>
+                    <div class="time">
+                        <div>
+                            <span>Check In</span>
+                            <p id="checkIn">15:00 — 21:00</p>
+                        </div>
+                        <div>
+                            <span>Check Out</span>
+                            <p id="checkOut">10:00</p>
+                        </div>
+                    </div>
+                    <div class="spice">
+                        <span class="room-spice">NT.</span><span class="room-spice"
+                            id="roomSpice">1980</span><br><span>平日(一~四)</span><br>
+                        <span class="room-holiday-spice">NT.</span><span class="room-holiday-spice"
+                            id="holidaySpice">1500</span><br><span>假日(五~日)</span>
+                    </div>
+                </section>
+                <section class="device">
+                    <ul>
+                        <li class="wifi"><img src="image/wifi.svg">Wi-Fi</li>
+                        <li class="phone"><img src="image/phone.svg">電話</li>
+                        <li class="mountain-range"><img src="image/mountain-range.svg">漂亮的視野</li>
+                        <li class="breakfast"><img src="image/breakfast.svg">早餐</li>
+                        <li class="breeze"><img src="image/breeze.svg">空調</li>
+                        <li class="no-smoke-symbol"><img src="image/no-smoke-symbol.svg">禁止吸煙</li>
+                        <li class="bar"><img src="image/bar.svg">Mini Bar</li>
+                        <li class="fridge"><img src="image/fridge.svg">冰箱</li>
+                        <li class="crawling-baby-silhouette"><img src="image/crawling-baby-silhouette.svg">適合兒童
+                        </li>
+                        <li class="room_service"><img src="image/room_service.svg">Room Service</li>
+                        <li class="sofa"><img src="image/sofa.svg">沙發</li>
+                        <li class="dog"><img src="image/dog.svg">寵物攜帶</li>
+                    </ul>
+                </section>
+            </div>
+        </article>
+        <!-- 日曆 -->
+        <article class="booking">
+            <div id="calendar"></div>
+            <a class="btn-booking" id="openDialog">預約時段</a>
+            <a class="btn-booking" id="chancelRoom" onclick="chancelRoom()">清除所有預約</a>
+        </article>
+
+    </div>
+
+    <!-- 開啟訂房dialog -->
+    <div class="dk-bg">
+        <div class="dialog-wrap booking-dialog">
+            <span>預約時段</span>
+            <p class="hr">\\\</p>
+            <form id="bkform">
+                <p>
+                    <span>姓名</span>
+                    <input type="text" name="cname" id="cName" value="陳大天">
+                </p>
+                <p>
+                    <span>電話</span>
+                    <input type="text" name="ctel" id="cTel" value="0912542121">
+                </p>
+                <p class="datepicker-wrap">
+                    <span>預約起訖</span>
+                    <div class="datepicker-wrap-div">
+                        <!-- <input type="text" id="dt1" class="ca-input" placeholder="入住日" autocomplete="off" value="2020-05-19"> -->
+                        <input type="text" id="dt1" class="ca-input" placeholder="訂房日" autocomplete="off" value="">
+                        <div id="one"></div>
+                        <span>&nbsp; &ndash; &nbsp;</span>
+                        <input type="text" id="dt2" class="ca-input" placeholder="退房日" autocomplete="off" value=""
+                            readonly>
+                        <div id="two"></div>
+                    </div>
+                </p>
+                <div class="total">
+                    <p class="flex-space-between">
+                        <span>平時時段</span>
+                        <span id="nDay">夜</span>
+                    </p>
+                    <p class="flex-space-between">
+                        <span>假日時段</span>
+                        <span id="hDay">夜</span>
+                    </p>
+                </div>
+                <p class="price">= NT.<span id="totalPrice"></span></p>
+                <div class="flex-space-between">
+                    <input type="button" class="close-dialog" value="取消">
+                    <!-- <input type="button" id="bookingRoom" value="確定預約"> -->
+                    <input type="button" id="bookingRoom" value="確定預約">
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- 訂房成功dialog -->
+    <div class="dk-bg success">
+        <div class="dialog-wrap">
+            <span>預約成功</span>
+            <p class="hr">\\\</p>
+            <div class="success">
+                <img src="image/success.svg" alt="white space 訂房">
+            </div>
+            <div class="flex-space-between">
+                <input type="text" class="visible-hd">
+                <input type="submit" class="close-dialog" value="回頁面">
+            </div>
+        </div>
+    </div>
+
+    <!-- 訂房失敗dialog -->
+    <div class="dk-bg failure">
+        <div class="dialog-wrap">
+            <span>預約失敗</span>
+            <p class="hr">\\\</p>
+            <p>預約時間已被人預訂</p>
+            <div class="flex-space-between">
+                <input type="text" class="visible-hd">
+                <input type="submit" class="close-dialog" value="回頁面">
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <script>
+        $('div , ul').contents().filter(function () {
+            return this.nodeType === 3;
+        }).remove();
+
+        //calendar inline
+        var $ca = $('#calendar').calendar({
+            width: 320,
+            height: 320,
+            data: [
+                {
+                    data: '2020/06/11',
+                    value: 'checked'
+                }
+            ],
+            monthArray: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+        });
+
+
+
+        // picker
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var date = now.getDate();
+
+
+        var data = [{
+            date: year + '-' + month + '-' + (date - 1),
+            value: 'hello'
+        }, {
+            date: year + '-' + month + '-' + date,
+            value: '上班'
+        }, {
+            date: new Date(year, month - 1, date + 1),
+            value: '吃饭睡觉打豆豆'
+        }, {
+            date: '2016-10-31',
+            value: '2016-10-31'
+        }];
+
+
+        // picker
+        $('#one').calendar({
+            trigger: '#dt1',
+            offset: ['-100%', '-100%'],
+            zIndex: 10,
+            data: data,
+            onSelected: function (view, date, data) {
+                //console.log('event: onSelected')
+            },
+            onClose: function (view, date, data) {
+                //console.log('event: onClose')
+                //console.log('view:' + view)
+                //console.log('date:' + date)
+                //console.log('data:' + (data || '无'));
+                if(data != "" && $('#dt2').val() == ""){   
+                    //debugger                 
+                    var nPrice = $('#roomSpice').text();
+                    var hPrice = $('#holidaySpice').text();
+
+                    // 確認是否為週末
+                    if (isWeek(date)){
+                        var price = hPrice
+                    }else{
+                        price = nPrice
+                    };
+                    $('#totalPrice').html(price);
+
+
+                    if($('#dt2').val() != ""){
+                        var date2 = $('#two').calendar().data.date;
+                        console.log(date2)
+                    }
+                    
+                    //$('.room-spice').html('NT.' + room[i].normalDayPrice); 平日價格
+                    //$('.room-normal-spice').html('NT.' + room[i].holidayPrice); 假日價格
+                }
+            }
+        });
+        $('#two').calendar({
+            trigger: '#dt2',
+            offset: ['-100%', '-100%'],
+            zIndex: 10,
+            data: data,
+            onSelected: function (view, date, data) {
+                //console.log('event: onSelected')
+            },
+            onClose: function (view, date, data) {
+                if(data != "" && $('#dt1').val() != ""){   
+                    //debugger                 
+                    console.log(date);
+                    var x = date.getDate();
+                    var y = x - 1;
+                    console.log(y)
+                    
+                } 
+            }
+        });
+
+        function isWeek(date){            
+            if(date.getDay() == 5 || date.getDay() == 6 || date.getDay() == 7){
+                return true;
+            }
+        }
+
+
+
+        //dialog
+        $('#openDialog').click(function () {
+            $('.booking-dialog').parent().show()
+        })
+        $('.close-dialog').click(function () {
+            $('.dk-bg').hide()
+        })
+
+    </script> -->
+
+</body>
+
+</html>

@@ -1,0 +1,491 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+/*reset*/
+html,body,p{
+    margin: 0;
+    font-family: 'Noto Sans TC' , Arial, Helvetica, Microsoft JhengHei , sans-serif;
+}
+a{
+    color: #000;
+    text-decoration: none;
+}
+
+/**************************** grid*/
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex-space-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.visible-hd{
+    visibility: hidden;
+}
+
+/**************************** dialog*/
+.dk-bg{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.5);
+    z-index: 10;
+}
+.dialog-wrap{
+    position: absolute;
+    min-width: 455px;
+    box-sizing: border-box;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    padding: 3em;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+    background-color: #fff;
+    z-index: 20;
+}
+
+.dialog-wrap > span{
+    font-size: 2em;
+}
+.dialog-wrap .flex-space-between input{
+    width: auto;
+    height: auto;
+    padding: .8em 1.5em;
+    border: 0;
+
+    font-family: 'Noto Sans TC' , sans-serif;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+}
+.dialog-wrap .flex-space-between input:first-of-type{
+    background-color: #D8D8D8;    
+    color: #6D7278;   
+}
+.dialog-wrap .flex-space-between input:last-of-type{    
+    background-color: #484848;
+    color: #FFF;    
+}
+
+/*booking-dialog*/
+.booking-dialog form > p > span{
+    display: inline-block;
+    width: 30%;
+    line-height: 32px;
+}
+.booking-dialog form .date{
+    width: calc((70% - 6em)/ 2 + 2px );
+}
+.booking-dialog .total{
+    background-color: #EDEDED;
+    width: 100%;
+    position: static;
+    transform: translate(-3em, 0);
+    padding: 1em 3em;
+    margin: 1em 0;
+    color: #6D7278;
+}
+.booking-dialog .price{
+    margin-bottom: 1em;
+    font-size: 2em;
+    letter-spacing: 2.7px;
+    color: #FF5C5C;
+    text-align: right;
+}
+.booking-dialog form > p.price > span{
+    width: auto;
+}
+
+/*booking success*/
+.dialog-wrap .success{
+    text-align: center;
+}
+.dialog-wrap .success > img{
+    max-width: 60px;
+}
+
+/**************************** index*/
+.kv{
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    background-color: #EEE;
+    text-align: center;
+
+    background: url('../image/room1-3.jpg') no-repeat;
+    background-position: center center;
+
+    animation: changeKV 20s infinite;
+}
+.kv > div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-65%);
+}
+.kv > div > div{
+    padding-top: 2em ;
+}
+.share{    
+    margin: 1em;
+}
+.share img{
+    display: inline-block;
+    width: 25px;
+    margin-right: .5em;
+}
+
+.contact{
+    display: inline-block;
+    border-left: 1px solid #FFF;      
+    padding-left: 1.5em; 
+
+    color: #FFF;    
+    text-align: left; 
+    line-height: 32px;
+}
+
+.contact > p > img{
+    display: inline-block;
+    width: 19px;
+    vertical-align: middle;
+    margin-right: 1em;
+}
+
+/*index room link below*/
+article{
+    max-width: 1200px;
+    position: static;
+    transform: translate(0 , -10vh);
+    margin: 0 auto;
+    text-align: center;
+}
+.room-wrap{
+    position: relative;
+    display: inline-block;
+    width: 300px;
+    box-shadow: 2px 2px 9px 0 rgba(0,0,0,0.18);
+    margin: 0 24px;
+    margin-bottom: 80px;  
+}
+.room-wrap .imgbox{ 
+    position: relative;   
+    width: 300px;
+    height: 350px;
+}
+.room-wrap .imgbox > img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.room-info{
+    position: absolute;
+    width: 100%;
+    height: 70px;
+    bottom: 0;      
+    padding: 0 1.5em;
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 2px 2px 9px 0 rgba(0,0,0,0.18);
+    box-sizing: border-box;
+    
+    animation: moveOut ease-in-out .4s both;
+}
+.room-wrap span{
+    font-family: 'Noto Sans TC' , sans-serif;
+    font-size: .9em;
+    font-weight: 300;
+    letter-spacing: 1.3px;
+    text-align: left;
+}
+.room-wrap .room-name{
+    display: block; 
+    line-height: 70px;
+}
+.room-wrap .room-spice{ 
+    display: inline-block;
+    font-size: 1.5em; 
+    font-weight: 300;
+    letter-spacing: 2.2px;    
+}
+.room-wrap .room-spice > span{
+    font-size: 12px;
+}
+.room-wrap .room-holiday-spice{
+    color: #6D7278;
+    font-size: 12px;
+    font-weight: 300;
+}
+.room-wrap:hover .room-info{
+    animation: moveOn ease-in-out .4s both;
+}
+
+/******************************** roomInfo*/
+.content-wrap{
+    max-width: 1600px;
+    margin: 0 auto;
+}
+.rm-bn{
+    position: relative;
+    width: 100%;
+    height: 70vh;
+}
+.rm-bn .logo{
+    position: absolute;
+    top: 2em;
+    left: 3em;
+}
+.pic-left{
+    display: inline-block;
+    width: 70%;
+    height: 100%;
+
+    background: #ddd;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.pic-right{
+    display: inline-block;
+    width: 30%;
+    height: 70vh;
+}
+.pic-right1{
+    width: 100%;
+    height: 50%;
+    
+    background: #d0d0d0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.pic-right2{
+    width: 100%;
+    height: 50%;
+    
+    background: #c3c3c3;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*roominfo*/
+.roomcnt{
+    display: inline-block;
+    width: 55%;
+    transform: unset;
+    padding: 3em 5em;
+    font-weight: 300;
+}
+.roomcnt > div:first-of-type{
+    width: 100%;
+    text-align: left;
+}
+.intro{
+    position: relative;
+}
+.intro .room-name{
+    font-size: 2em;
+    letter-spacing: 3.5px;
+}
+.intro > p > span{
+    display: inline-block;
+    line-height: 30px;
+    letter-spacing: 1.5px;
+    margin-top: 1em;
+}
+.intro > p > span:last-of-type{
+    display: block;
+    max-width: 60%;
+    font-size: 12px;
+}
+.hr{
+    display: block;
+    letter-spacing: 10px;
+    transform: rotateX(45deg);
+    padding: 1em 0;
+}
+.intro .time div{
+    display: inline-block;
+    padding-right: 3em;    
+    letter-spacing: 1.5px;
+}
+.intro .time span{
+    line-height: 14px;  
+    font-size: 14px;  
+}
+.intro .time p{
+    font-size: 1.5em;
+    line-height: 1em;
+}
+.intro .spice{
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: right;
+}
+.intro .spice .room-spice{
+    display: inline-block;
+    font-size: 2em;
+    letter-spacing: 3px; 
+    line-height: 24px;    
+}
+.intro .spice .room-holiday-spice{    
+    display: inline-block;
+    letter-spacing: 2px; 
+    padding-top: 16px;    
+    font-weight: 400;
+}
+.intro .spice .room-spice > span,
+.intro .spice .room-holiday-spice > span{
+    font-size: 14px;
+    color: #6D7278;
+    letter-spacing: 3px; 
+}
+
+/*device*/
+.device{
+    max-width: 60%;
+    background-color: #F0F0F0;
+    padding:  .5em .8em;
+    margin: 2.5em 0;
+}
+.device ul li {
+    position: relative;
+    list-style: none;
+    display: inline-block;
+    width: 33.33333%;
+    padding: 8px 0;
+    font-size: 12px;
+    line-height: 40px;  
+    box-sizing: border-box;  
+}
+.device ul li > img{
+    width: 25px;
+    height: 25px;
+    padding-right: 12px;
+    padding-right: 1em;
+    vertical-align: middle;
+}
+.device ul li.hide,
+.device ul li.hide img{
+    opacity: .5;
+}
+
+/*booking*/
+#calendar{
+    padding: 36px;
+}
+.ca-input{
+    width: 83px;
+}
+.datepicker-wrap{
+    display: inline;
+}
+.datepicker-wrap-div{
+    display: inline-block;
+}
+.booking{
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+    transform: unset;
+    padding: 4em;
+    box-sizing: border-box;
+    text-align: left;
+}
+.booking .calendar{
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.15);
+}
+.btn-booking{
+    position: relative;
+    display: inline-block;
+    text-align: left;
+    background-color: #575757;
+    padding: 1em 1.5em;
+    margin: 2em 0;     
+    cursor: pointer;
+
+    color: #FFF;  
+    font-weight: 300;
+    letter-spacing: 1.7px;
+}
+.btn-booking::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 6.5px;
+    left: 6.5px;
+    background-image: linear-gradient(45deg,#6d7278 20%,#fff 0,#fff 60%,#6d7278 0,#6d7278 70%,#fff 0);
+    background-size: 5px 5px;
+    z-index: -1;
+}
+
+/******************************** animation*/
+/*index image hover*/
+@keyframes moveOn{
+    0%{       
+       
+    }
+    100%{        
+        height: 120px;
+    }
+}
+@keyframes moveOut{
+    0%{       
+        height: 120px;
+    }
+    100%{        
+        height: 70px;      
+    }
+}
+
+/*change key vision*/
+@keyframes changeKV{
+    19%{
+        opacity: 1;
+        background: url('../image/room2-1.jpg') center center no-repeat;
+    }
+    20%{
+        opacity: 1;        
+    } 
+
+    39%{
+        opacity: 1;
+        background: url('../image/room3-2.jpg') center center no-repeat;
+    }
+    40%{
+        opacity: 1;        
+    }
+
+    59%{
+        opacity: 1;
+        background: url('../image/room4-2.jpg') center center no-repeat;
+    }
+    60%{        
+        opacity: 1;       
+    }
+
+    79%{
+        opacity: 1;
+        background: url('../image/room5-1.jpg') center center no-repeat;
+    }
+    80%{
+        opacity: 1;        
+    }
+    
+    99%{
+        opacity: 1;
+        background: url('../image/room5-3.jpg') center center no-repeat;
+    }
+    100%{
+        opacity: 1;        
+    }
+}
