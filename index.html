@@ -16,17 +16,17 @@
     <!-- 左半部導覽 -->
     <nav>
         <ul>
-            <li><a href=""></a>首頁</li>
+            <a href=""><li>首頁</li></a>
             <br>
-            <li><a href=""></a>訂房網頁</li>
-            <li><a href=""></a>客服系統</li>
-            <li><a href=""></a>山丘泥作</li>
+            <a href="#page-booking"><li>訂房網頁</li></a>
+            <a href=""><li>客服系統</li></a>
+            <a href=""><li>山丘泥作</li></a>
             <br>
-            <li><a href=""></a>聯絡我</li>
+            <a href=""><li>聯絡我</li></a>
         </ul>
     </nav>
     <!-- 訂房網頁介紹 -->
-    <article>
+    <article id="page-booking">
         <!-- 訂房首圖 -->
         <section class="booking-bn-wrap">
             <img src="image/book-bn.png" alt="訂房首圖">
@@ -45,14 +45,17 @@
                     page。在串接API時，第一次接觸Postman(測試API工具)，在後續開發上更能快速除排串接錯誤的問題。另外，將檔案上傳至github，也研究了如何使用Sourcetree(git版控工具)將專案進行版本控制。
                 </p>
             </div>
-            <img src="image/arrow-down.png" alt="看更多內容">
+            <a href="#section1"><img src="image/arrow-down.png" alt="看更多內容"></a>
         </section>
 
         <!-- 查看所有房型 -->
-        <section>
+        <section id="section1">
             <img src="image/book-1.png" alt="查看所有房型">
             <figcaption>
                 01<h3>查看所有房型</h3>
+                <p>
+                    第一步串接所有房型的資料，讓使用者先選擇適合自己的房型。
+                </p>
             </figcaption>
         </section>
 
@@ -60,7 +63,10 @@
         <section> 
             <img src="image/book-2.png" alt="單一房型詳細資訊">           
             <figcaption>
-                02<h3>單一房型詳細資訊</h3>                
+                02<h3>單一房型詳細資訊</h3>      
+                <p>
+                    選擇房型後，再串接完整的房間資訊，供給使用者參考。
+                </p>          
             </figcaption>
         </section>
 
@@ -68,13 +74,16 @@
         <section>
             <img src="image/book-3.png" alt="預訂房間">
             <figcaption>
-                03<h3>預訂房間</h3>                
+                03<h3>預訂房間</h3>  
+                <p>
+                    預訂房間時，先幫使用者計算所有花費，再進一步預訂房間。
+                </p>              
             </figcaption>
         </section>
 
         <!-- 前往網站 -->
         <div class="btn-wrap">
-            <a href="">
+            <a href="booking.html" target="_blank">
                 前往網站
                 <img src="image/arrow-right.png" alt="前往訂房網站">
             </a>
