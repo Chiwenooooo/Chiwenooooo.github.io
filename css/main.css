@@ -116,10 +116,10 @@ a{
     background-color: #EEE;
     text-align: center;
 
-    background: url('../image/room1-3.jpg') no-repeat;
+    background: url('../image/room2-1.jpg') no-repeat;
     background-position: center center;
 
-    animation: changeKV 20s infinite;
+    animation: changeKV 15s infinite;
 }
 .kv > div{
     position: absolute;
@@ -491,43 +491,23 @@ article{
 
 /*change key vision*/
 @keyframes changeKV{
-    19%{
+    25%{
         opacity: 1;
-        background: url('../image/room2-1.jpg') center center no-repeat;
+        background: url('../image/room5-3.jpg') center center no-repeat;       
+        
     }
-    20%{
-        opacity: 1;        
-    } 
-
-    39%{
-        opacity: 1;
-        background: url('../image/room3-2.jpg') center center no-repeat;
-    }
-    40%{
-        opacity: 1;        
-    }
-
-    59%{
-        opacity: 1;
+    50%{
+        opacity: 1;            
         background: url('../image/room4-2.jpg') center center no-repeat;
     }
-    60%{        
-        opacity: 1;       
-    }
 
-    79%{
-        opacity: 1;
-        background: url('../image/room5-1.jpg') center center no-repeat;
-    }
-    80%{
-        opacity: 1;        
-    }
-    
-    99%{
-        opacity: 1;
-        background: url('../image/room5-3.jpg') center center no-repeat;
-    }
+    75%{
+        opacity: 1;           
+        background: url('../image/room5-1.jpg') center center no-repeat; 
+        
+    }    
     100%{
-        opacity: 1;        
+        opacity: 1;
+        background: url('../image/room3-2.jpg') center center no-repeat;          
     }
 }
