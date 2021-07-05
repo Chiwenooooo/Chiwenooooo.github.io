@@ -1,0 +1,108 @@
+body , span , p , ul , li{
+    color: #333;
+}
+
+/* 圖片hover效果 */
+.card-img-overlay{
+    visibility: hidden;
+}
+.card:hover .card-img-overlay{
+    visibility: inherit;
+    transition: all .3s;
+}
+
+/* carousel */
+.carousel-inner{
+    max-height: 50vh;
+}
+.carousel .text{
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    color: #FFF;
+}
+.carousel .text span ,
+.carousel .text a{
+    color: #FFF;
+    text-decoration: none;
+    opacity: .8;
+}
+.carousel .btn-outline-light:hover{
+    background-color: rgba(256,256,256,.3);
+    cursor: pointer;
+}
+
+.carousel.light-bg .text,
+.carousel.light-bg .text span ,
+.carousel.light-bg .text a{
+    color: #333;
+}
+.carousel.light-bg .text a{
+    border: 1px solid #333;
+}
+
+/* banner */
+/* .banner{
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+}
+.banner img{
+    width: 100%;
+}
+.banner > div{
+    position: absolute;
+    left: 30%;
+    top: 50%;
+    transform: translate(0 , -50%);
+} */
+
+/* main */
+main{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.skills{
+    color: #c1c1c1;
+}
+main > p {
+    letter-spacing: .7px;
+    line-height: 28px;
+}
+main ul span{
+   color: #3f93e2;
+}
+main ul li{
+    list-style: none;
+    font-weight: normal;
+    line-height: 26px;
+}
+main ul li mark{
+    background-color: transparent;
+    line-height: 20px;
+    padding: 0;
+    margin-right: 6px;
+    font-weight: 500;
+}
+
+/* card */
+.card-img-overlay:hover {
+    background-color: rgba(0,0,0,.7);
+    transition: all .3s;
+}
+.card-img-overlay h3{
+    color: #FFF;
+    opacity: .8;
+}
+.card-img-overlay p{
+    font-weight: lighter;
+    color: #FFF;
+    font-size: 12px ;
+}
+
+/* picture */
+picture img{
+    
+}
