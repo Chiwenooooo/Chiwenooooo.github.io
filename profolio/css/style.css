@@ -124,6 +124,14 @@ main ul li mark{
     font-size: 12px ;
 }
 
+/* page3 */
+.p3 .carousel-item{
+    background: #84754e; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #84754e 0%, #dbd6ca 80%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #84754e 0%,#dbd6ca 80%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #84754e 0%,#dbd6ca 80%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
 /* page8 */
 .old-pic img{
     border-radius: 3px;
@@ -201,7 +209,7 @@ text-align: center;}
 }
 
 
-@media (min-width:1440px){
+@media (min-width:1441px){
     .max-pic{
         text-align: center;
     }
@@ -215,5 +223,9 @@ text-align: center;}
     }
     .page1-2{
         background-color: #7e7f7e;
+    }
+    /* page5 */
+    .page5-2{
+        background-color: #B3B6BB;
     }
 }
