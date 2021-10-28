@@ -16,6 +16,16 @@
 </head>
 
 <body>
+  <div id="loading">
+    <div class="pic">
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <span>7 5 1 4 &nbsp; Profolio</span>
+    </div>
+  </div>
   <!-- header -->
   <nav class="navbar navbar-expand-lg navbar-light p-4">
     <div class="container-fluid">
@@ -68,7 +78,7 @@
 
     <!-- tools -->
     <div>
-      <span class="d-inline-block p-3 my-4 ms-5 fs-6 fst-italic bg-light tools">Tools - <br>HTML5 . SCSS .
+      <span class="d-inline-block p-3 my-4 ms-5 fs-6 fst-italic tools">Tools - <br>HTML5 . SCSS .
         CSS animation . JQuery</span>
     </div>
   </main>
@@ -97,5 +107,8 @@
       target="_blank">聯絡我 ✉️</a>
   </footer>
 </body>
+<script>
+  window.onload = function () { document.getElementById("loading").style.display = "none" }
+</script>
 
 </html>

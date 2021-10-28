@@ -16,6 +16,16 @@
 </head>
 
 <body>
+  <div id="loading">
+    <div class="pic">
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <span>7 5 1 4 &nbsp; Profolio</span>
+    </div>
+  </div>
   <!-- header -->
   <nav class="navbar navbar-expand-lg navbar-light p-4">
     <div class="container-fluid">
@@ -79,7 +89,7 @@
 
     <!-- tools -->
     <div>
-      <span class="d-inline-block p-3 my-4 ms-5 fs-6 fst-italic bg-light tools">Tools - <br>HTML5 . CSS .
+      <span class="d-inline-block p-3 my-4 ms-5 fs-6 fst-italic tools">Tools - <br>HTML5 . CSS .
         JQuery . RESTful API . GitHub
         pages​​​​​​​</span>
     </div>
@@ -87,10 +97,14 @@
   </main>
 
   <!-- picture -->
-  <picture>
-    <img class="w-100" src="images/pic1-3.png">
-    <img class="w-100" src="images/pic1-4.png">
-  </picture>
+  <div class="max-pic">
+    <div class="page1-1">
+      <img class="w-100" src="images/pic1-3.png">
+    </div>
+    <div class="page1-2">
+      <img class="w-100" src="images/pic1-4.png">
+    </div>
+  </div>
 
   <!-- footer -->
   <footer class="p-4 pb-5 d-flex justify-content-between">
@@ -98,6 +112,10 @@
       target="_blank"> 查看網頁 </a>
     <a class="btn btn-outline-secondary" href="page2.html">前往下一個專案</a>
   </footer>
+
 </body>
+<script>
+  window.onload = function () { document.getElementById("loading").style.display = "none" }
+</script>
 
 </html>

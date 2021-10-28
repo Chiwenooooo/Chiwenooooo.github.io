@@ -16,6 +16,16 @@
 </head>
 
 <body>
+  <div id="loading">
+    <div class="pic">
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <span>7 5 1 4 &nbsp; Profolio</span>
+    </div>
+  </div>
   <!-- header -->
   <nav class="navbar navbar-expand-lg navbar-light p-4">
     <div class="container-fluid">
@@ -53,16 +63,16 @@
     </div>
     <!-- tools -->
     <div>
-      <span class="d-inline-block p-3 my-4 ms-5 fs-6 fst-italic bg-light tools">Tools - <br>Adobe XD .
+      <span class="d-inline-block p-3 my-4 ms-5 fs-6 fst-italic tools">Tools - <br>Adobe XD .
         Zeplin . HTML . CSS .
         JQuery</span>
     </div>
   </main>
 
   <!-- picture -->
-  <picture>
+  <div class="max-pic">
     <img class="w-100" src="images/pic2-3.png">
-  </picture>
+  </div>
 
   <!-- footer -->
   <footer class="p-4 pb-5 d-flex flex-row-reverse">
@@ -70,5 +80,8 @@
   </footer>
 
 </body>
+<script>
+  window.onload = function () { document.getElementById("loading").style.display = "none" }
+</script>
 
 </html>
