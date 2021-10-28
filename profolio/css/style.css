@@ -17,7 +17,7 @@ body , span , p , ul , li{
 }
 .carousel .text{
     position: absolute;
-    left: 20%;
+    left: calc((100% - 1000px) / 2);
     top: 50%;
     transform: translate(0%, -50%);
     color: #FFF;
@@ -63,28 +63,50 @@ body , span , p , ul , li{
 main{
     max-width: 1000px;
     margin: 0 auto;
+    line-height: 1.8;
+    letter-spacing: 0.8px;
 }
-.skills{
+main:not(.index):first-of-type > div:first-of-type{
+    width: 800px;
+}
+main:not(.index):first-of-type > div:last-of-type{
+    width: 200px;
+}
+
+.fst-italic:not(.tools){
+    color: #333;
+}
+.tools{
+    text-align: left;
+    padding: 0 8px;
+    background-color: rgba(193, 193, 193 , .4);
     color: #c1c1c1;
+}
+.title{
+    color: #5f8d2e;
 }
 main > p {
     letter-spacing: .7px;
     line-height: 28px;
 }
-main ul span{
-   color: #3f93e2;
+main ul {
+    line-height: 1.8;
+    letter-spacing: 0.8px;
 }
 main ul li{
     list-style: none;
     font-weight: normal;
-    line-height: 26px;
+    line-height: 1.8;
+    letter-spacing: 0.8px;
+}
+main ul span{
+    color: #3f93e2;
 }
 main ul li mark{
     background-color: transparent;
     line-height: 20px;
     padding: 0;
     margin-right: 6px;
-    font-weight: 500;
 }
 
 /* card */
@@ -102,7 +124,58 @@ main ul li mark{
     font-size: 12px ;
 }
 
-/* picture */
-picture img{
-    
+/* page8 */
+.old-pic img{
+    border-radius: 3px;
+}
+.old-pic span{
+    display: inline-block;
+    padding-top: 1em;
+}
+.old-pic p:nth-of-type(1){
+    transform:  translate(60px , -10px);
+}
+.old-pic p:nth-of-type(1) img{
+    transform: rotate3d(-15, 25, -13, 17deg);
+}
+.old-pic p:nth-of-type(2) img{
+    transform: rotate3d(-15, 25, -13, 17deg);
+}
+.old-pic p:nth-of-type(3){
+    transform:  translate(-60px , 10px);
+}
+.old-pic p:nth-of-type(3) img{
+    transform: rotate3d(-15, 25, -13, 17deg);
+}
+.old-pic p:nth-of-type(3) span{
+    transform:  translate(20px , 0);
+}
+
+.page8-features img{
+    border-radius: 5px;
+}
+/* .page8-features > h6 > ul > span:after{
+    content: "01";
+    font-size: 42px;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px 80px 80px 80px;
+    position: absolute;
+    left: -80px;
+    top: -34px;
+    text-align: center;
+    line-height: 100px;
+    background-color: rgba(71, 137, 127 , .3);
+    color: transparent;
+    -webkit-text-stroke: 1px #FFF;
+    z-index: -1;
+}
+.page8-features > h6 > ul:nth-of-type(2) > span:after{
+    content: "02";
+}
+.page8-features > h6 > ul:nth-of-type(3) > span:after{
+    content: "03";
+} */
+footer .m-auto{
+    transform: translate(100% , 0);
 }

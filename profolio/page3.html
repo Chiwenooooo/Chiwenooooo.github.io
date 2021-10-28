@@ -16,64 +16,70 @@
 </head>
 
 <body>
+  <!-- header -->
   <nav class="navbar navbar-expand-lg navbar-light p-4">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html"> 7 5 1 4 </a>
+      <a class="navbar-brand" href="index.html"> 7 5 1 4 &nbsp; Profolio</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <!-- <div class="d-lg-flex collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">WORK</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">ABOUT</a>
-          </li>
-        </ul>
-      </div> -->
     </div>
   </nav>
 
+  <!-- key vision -->
   <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="images/pic3-3.png" class="d-block w-100">
+        <img src="images/pic3-2.png" class="d-block w-100">
       </div>
     </div>
     <div class="text">
       <h1>投資顧問官網</h1>
-      <span>UI / RWD</span>
+      <span>UI / 響應式切版</span><br>
+      <a class="btn btn-outline-light mt-3" href="https://newcim.capital.com.tw/newsite/index" target='_blank'>查看網頁</a>
     </div>
   </div>
 
   <!-- main   -->
-  <main class="p-5">
-    <span class="skills d-inline-block fs-6 fst-italic">SKILLS / Illustrator . Angular . SCSS . RWD . Git</span>
-    <p class="p-2">群益證券投資顧問，由專業分析師提供每日盤勢、重大新聞、產業及個股第一手消息，<br>
-      透過即時行動服務，有效掌握全球市場脈動，豐富的講座議題，讓您也能成為股市達人!<br>
-    </p>
-    <p class="p-2">專案目標 ｜ 提供客戶專業的投資分析、課程講座，提升投顧的專業感，進而委託全權投資業務。<br>
-    </p>
-    <h6 class="p-2">
-      <ul class="mb-4">
-        <span class="d-inline-block">網頁編排</span>
-        <li><mark>Angular</mark>用元件化的方式組成模組，再由模組組成單一頁面。用動態替換的方式更新需要變動的資料，避免第一次很耗費效能的載入所有網頁內容，並可以將模組將模組化的物件重複應用於不同場景。
-        </li>
-        <li><mark>SCSS</mark> variable / maxin / extend 設定顏色、文字、響應式尺寸增加開發效率，並降低重複的程式碼載入時消耗的效能</li>
-      </ul>
-      <ul class="mb-4">
-        <span class="d-inline-block">UI</span>
-        <li><mark>模組化</mark> 以系統模組化的方式設計介面，後續新增功能時，僅需堆疊模組組成網頁，維持整體一致性。</li>
-      </ul>
+  <main class="p-5 px-0 d-flex pb-0">
+    <div class="pe-4">
+      <span class="d-inline-block fs-6 fst-italic">專案背景 - </span>
+      <p class="py-2 text-secondary">原先的投資顧問官網已經是20年前的網站，除了程式語言太老舊，隨著操作習慣的改變，為了提供客戶更專業的感受，因此翻新證券投資官網。
+      </p>
 
-    </h6>
+      <span class="mt-4 d-inline-block fs-6 fst-italic">專案說明 - </span>
+      <p class="py-2 text-secondary">投顧網站由專業分析師提供每日盤勢、重大新聞、產業及個股第一手消息，透過即時行動服務，有效掌握全球市場脈動，豐富的講座議題！
+      </p>
+      
+      <h6 class="p-2">
+        <ul class="mb-4">
+          <span class="d-inline-block title">系統模組化應用</span>
+          <li class="text-secondary"><mark>Adobe XD</mark> 增加顏色、文字到資產，模組化的方式設計介面，有一套固定的 guideline ，後續新增功能時僅需堆疊模組，能維持整體一致性。</li>
+          <li class="text-secondary"><mark>SCSS</mark> 以 OOCSS 模組化的概念將樣式和空間架構分離，降低重複高的程式碼，易於後續調整或維護。</li>
+          <li class="text-secondary"><mark>Angular</mark>網站僅生成一個 HTML 檔案，動態替換已經被模組化的各物件，除了可以重複應用於不同場景，還能避免一次大量載入所有網頁內容，導致要耗費效能要下載很久。
+          </li>
+        </ul>
+        <img class="w-100" src="images/pic3-3.png">
+      </h6>
+    </div>
+
+    <!-- tools -->
+    <div>
+      <span class="d-inline-block p-3 my-4 ms-5 fs-6 fst-italic bg-light tools">Tools - <br>Illustrator . Angular . SCSS . RWD . Git</span>
+    </div>
   </main>
 
   <picture>
     <img class="w-100" src="images/pic3-4.png">
   </picture>
+
+  <!-- footer -->
+  <footer class="p-4 pb-5 text-center">
+    <a class="btn btn-secondary" href="https://newcim.capital.com.tw/newsite/index" target="_blank"> 查看網頁 </a>
+    <a class="btn btn-outline-secondary position-absolute end-0 me-5 d-inline-block" href="page8.html">前往下一個專案</a>
+  </footer>
+
 </body>
 
 </html>
