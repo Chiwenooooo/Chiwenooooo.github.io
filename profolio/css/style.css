@@ -70,7 +70,7 @@ main:not(.index):first-of-type > div:first-of-type{
     width: 800px;
 }
 main:not(.index):first-of-type > div:last-of-type{
-    width: 200px;
+    max-width: 200px;
 }
 
 .fst-italic:not(.tools){
@@ -78,9 +78,13 @@ main:not(.index):first-of-type > div:last-of-type{
 }
 .tools{
     text-align: left;
-    padding: 0 8px;
     background-color: rgba(193, 193, 193 , .2);
     color: #c1c1c1;
+    opacity: .8;
+}
+.tools img{
+    width: 47px;
+    height: 47px;
 }
 .title{
     color: #5f8d2e;
